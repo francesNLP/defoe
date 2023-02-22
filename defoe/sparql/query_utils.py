@@ -74,19 +74,20 @@ def get_articles_text_matches(text, keysentence):
     :return: Set of sentences
     :rtype: set(str or unicode)
     """
-    match_text = {}
+    match = []
+    text_list= text.split()
     for sentence in keysentence:
         if len(sentence.split()) > 1:
             if sentence in text:
-                if sentence not in match_text:
-                    match_text[sentence]=text
+                results=[matches.start() for matches in re.finditer(sentence, text)]
+                for r in results:
+                    match.append(sentence)
         else:
-            text_list= text.split()
             pattern = re.compile(r'^%s$'%sentence)
             for word in text_list:
-                if re.search(pattern, word) and (sentence not in match_text):
-                    match_text[sentence] = text
-    return match_text
+                if re.search(pattern, word):
+                    match.append(sentence)
+    return sorted(match)
 
 def blank_as_null(x):
     return when(col(x) != "", col(x)).otherwise(None)

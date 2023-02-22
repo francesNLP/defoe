@@ -82,6 +82,7 @@ def do_query(df, config_file=None, logger=None, context=None):
     else:
         hit_count = "term"
 
+
     if "kg_type" in config:
         kg_type = config["kg_type"]
     else:
