@@ -61,7 +61,7 @@ def do_query(df, config_file=None, logger=None, context=None):
     else:
         start_year = None
 
-    if "start_year" in config:
+    if "end_year" in config:
         end_year = int(config["end_year"])
     else:
         end_year = None

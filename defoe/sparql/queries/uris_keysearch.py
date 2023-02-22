@@ -66,7 +66,7 @@ def do_query(df, config_file=None, logger=None, context=None):
     else:
         start_year = None
 
-    if "start_year" in config:
+    if "end_year" in config:
         end_year = int(config["end_year"])
     else:
         end_year = None
@@ -92,7 +92,7 @@ def do_query(df, config_file=None, logger=None, context=None):
         fdf = df.withColumn("definition", blank_as_null("definition"))
 
         if start_year and end_year:
-            newdf=fdf.filter(fdf.definition.isNotNull()).filter(fdf.year >= start_year).filter(fdf.year <= end_year).select(fdf.year, fdf.term, fdf.definition, fdf.term, fdf.uri)
+            newdf=fdf.filter(fdf.definition.isNotNull()).filter(fdf.year >= start_year).filter(fdf.year <= end_year).select(fdf.year, fdf.term, fdf.definition, fdf.uri)
         elif start_year:
             newdf=fdf.filter(fdf.definition.isNotNull()).filter(fdf.year >= start_year).select(fdf.year, fdf.term, fdf.definition, fdf.uri)
         elif end_year:
