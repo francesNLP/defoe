@@ -489,6 +489,10 @@ def geoparser_cmd(text, defoe_path, os_type, gazetteer, bounding_box):
     atempt=0
     flag = 1
     geoparser_xml = ''
+    if "-" in text:
+        text=text.replace("-", "")
+    if "\\" in text:
+        text=text.replace("\\", "")
     if "'" in text:
         text=text.replace("'", "\'\\\'\'")
   
@@ -505,7 +509,12 @@ def geoparser_cmd(text, defoe_path, os_type, gazetteer, bounding_box):
         
         if "Error" in str(stderr):
             flag = 0
+            print("----BEGIN %s----" %atempt )
             print("err: '{}'".format(stderr))
+            print("stdout: '{}'".format(stdout))
+            print("Text error: %s" %text)
+            print("Text error in UTF-8: %s" %text.encode(encoding='UTF-8'))
+            print("----END %s----" %atempt)
         else:
             geoparser_xml = stdout
         atempt+= 1
@@ -542,9 +551,6 @@ def geoparser_coord_xml(geo_xml):
                         if subchild.tag == "parts":
                             for subsubchild in subchild:
                                 toponymName = subsubchild.text
-                               # print("IMPORTANTE---------------\n")
-                               # print(toponymName, latitude, longitude)
-                               # print("END IMPORTANTE---------------\n")
                                 dResolvedLocs[toponymName+"-"+toponymId] = {"lat": latitude, "long": longitude, "pop": pop, "in-cc":in_cc, "type": type, "snippet": snippet_er}
     except:
         pass
