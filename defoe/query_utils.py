@@ -491,7 +491,8 @@ def geoparser_cmd(text, defoe_path, os_type, gazetteer, bounding_box):
     geoparser_xml = ''
     if "'" in text:
         text=text.replace("'", "\'\\\'\'")
-   
+  
+
     cmd = 'echo \'%s\' \''+ text + '\' | '+ defoe_path + 'geoparser-v1.1/scripts/run -t plain -g ' + gazetteer + ' ' + bounding_box + ' -top | ' + defoe_path+ 'georesolve/bin/'+ os_type + '/lxreplace -q s | '+ defoe_path + 'geoparser-v1.1/bin/'+ os_type +'/lxt -s '+ defoe_path+'geoparser-v1.1/lib/georesolve/addfivewsnippet.xsl'
 
     
@@ -501,6 +502,7 @@ def geoparser_cmd(text, defoe_path, os_type, gazetteer, bounding_box):
                                stdout=subprocess.PIPE,
                                stderr=subprocess.PIPE)
         stdout, stderr = proc.communicate()
+        
         if "Error" in str(stderr):
             flag = 0
             print("err: '{}'".format(stderr))
@@ -540,7 +542,9 @@ def geoparser_coord_xml(geo_xml):
                         if subchild.tag == "parts":
                             for subsubchild in subchild:
                                 toponymName = subsubchild.text
-                                #print(toponymName, latitude, longitude)
+                               # print("IMPORTANTE---------------\n")
+                               # print(toponymName, latitude, longitude)
+                               # print("END IMPORTANTE---------------\n")
                                 dResolvedLocs[toponymName+"-"+toponymId] = {"lat": latitude, "long": longitude, "pop": pop, "in-cc":in_cc, "type": type, "snippet": snippet_er}
     except:
         pass
