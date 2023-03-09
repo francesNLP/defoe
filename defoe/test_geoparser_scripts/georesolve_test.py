@@ -7,10 +7,11 @@ from spacy.vocab import Vocab
 
 
 #change this according to your path
-defoe_path ="/Users/rf208/Research/NLS-Fellowship/work/defoe/"
-gazetteer = "os"
-os_type= "sys-i386-snow-leopard"
+defoe_path ="/home/rosa_filgueira_vicente/defoe/"
+gazetteer = "geonames"
+os_type= "linux"
 bounding_box = " -lb -7.57216793459 49.959999905 1.68153079591 58.6350001085 2 "
+flag = 1
 
 def georesolve_page_2(text):
     nlp = spacy.load("en_core_web_lg")
