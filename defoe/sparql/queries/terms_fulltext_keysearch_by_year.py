@@ -159,7 +159,7 @@ def do_query(df, config_file=None, logger=None, context=None):
     
         preprocess_articles = articles.flatMap(
             lambda t_articles: [(t_articles[0], t_articles[1], t_articles[2], t_articles[3], t_articles[4], t_articles[5],
-                                        t_articles[6], t_articles[7], t_articles[8], t_articles[9], t_articles[10], preprocess_clean_pag(t_articles[10]+" "+t_articles[11], preprocess_type), t_articles[11])]) 
+                                        t_articles[6], t_articles[7], t_articles[8], t_articles[9], t_articles[10], preprocess_clean_page(t_articles[10]+" "+t_articles[11], preprocess_type), t_articles[11])]) 
     else:
        #(year-0, uri-1, title-2, serie-3, archive_filename-4, volume-5, volumeTitle-6, part-7, page_number-8, volumeId-9, numWords-10, preprocess_article-11)
         preprocess_articles = articles.flatMap(
