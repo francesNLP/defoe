@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 conda install --yes lxml
-conda install --yes nltk
+conda install --yes nltk=3.8.1
 conda install --yes pep8
 conda install --yes pylint
 #conda install --yes pycodestyle
