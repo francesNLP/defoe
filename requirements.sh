@@ -4,6 +4,7 @@ conda install --yes lxml
 conda install --yes nltk=3.8.1
 conda install --yes pep8
 conda install --yes pylint
+conda install --yes SPARQLWrapper
 #conda install --yes pycodestyle
 conda install --yes pytest
 conda install --yes PyYAML
